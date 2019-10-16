@@ -1,7 +1,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /*doens't add margin and padding to total size*/
+    box-sizing: border-box;
+    /*doens't add margin and padding to total size*/
 }
 
 body {
@@ -14,21 +15,20 @@ body {
 }
 
 .header {
-    height: 95vh; /*  percent of viewport height - 95% of viewport*/
-    background-image: linear-gradient(
-        to right bottom, 
-        rgba(126, 216, 111, 0.8), 
-        rgba(40, 180, 131, 0.8)
-        ), 
-        url('/source/Natours/final-after-S06/img/hero.jpg'); /*first image is gradient passing in colors */
-    background-size: cover; /*tried to fit elemnt inside parent*/
+    height: 95vh;
+    /*  percent of viewport height - 95% of viewport*/
+    background-image: linear-gradient( to right bottom, rgba(126, 216, 111, 0.8), rgba(40, 180, 131, 0.8)), url('/source/Natours/final-after-S06/img/hero.jpg');
+    /*first image is gradient passing in colors */
+    background-size: cover;
+    /*tried to fit elemnt inside parent*/
     background-position: top;
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     position: relative;
 }
 
 .logo-box {
-    position: absolute; /*has to include position:relative in parent. that's where it pulls absolute"*/
+    position: absolute;
+    /*has to include position:relative in parent. that's where it pulls absolute"*/
     top: 40px;
     left: 40px;
 }
@@ -41,19 +41,27 @@ body {
     position: absolute;
     top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%); /* essentially moves the anchor point to the center of the object rather then one side */
+    transform: translate(-50%, -50%);
+    /* essentially moves the anchor point to the center of the object rather then one side */
+    text-align: center; /* centers text and all inline elemnts (act like text) */
 }
 
 .heading-primary {
     color: #fff;
     text-transform: uppercase;
+    backface-visibility: hidden; /*fixes slight shaking of animation. hides background obj */
+    margin-bottom: 60px; /* space between heading and button box */
 }
 
 .heading-primary-main {
-    display: block; /* block spacing fills the space it has and has newline after it*/
+    display: block;
+    /* block spacing fills the space it has and has newline after it*/
     font-size: 60px;
     font-weight: 400;
     letter-spacing: 35px;
+    animation-name: moveToLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
 }
 
 .heading-primary-sub {
@@ -61,5 +69,49 @@ body {
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 17.4px;
+    animation-name: moveToRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
 }
 
+@keyframes moveToLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    80% {
+        transform: translateX(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: 0px;
+    }
+}
+
+@keyframes moveToRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    80% {
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: 0px;
+    }
+}
+
+.btn:link,
+.btn:visited { /* psudo state 'link' is styling under a special state or condition*/
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block; /* this makes an inline element function like block. Text box text-align cetners this*/
+
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
